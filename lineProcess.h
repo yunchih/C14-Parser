@@ -7,12 +7,13 @@
 
 typedef struct List{
 	Code code;
-	int next_position;
+	long next_position;
 	struct List *next;
 } List;
 typedef struct Instruction{
 	List* list;
 	char *name;
+	long position;
 	struct Instruction *next;
 } Instruction;
 

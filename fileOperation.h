@@ -8,7 +8,7 @@
 #define FieldMask 0x11111111
 #define END_POS 0xFF
 
-void incrementPosition( FILE* out[] , int increment );
+void incrementPosition( FILE* out[] );
 
 void resetFilePointer( FILE* out[] );
 

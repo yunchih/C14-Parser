@@ -54,6 +54,7 @@ void getInstructions( FILE* src , Instruction** instructions , int* instructions
 			next_instruction = malloc( sizeof(Instruction) );
 			next_instruction->list = next_list;
 			next_instruction->next = NULL;
+			next_instruction->position = 0;
 			next_instruction->name = malloc( strlen(instruction_name)+1 );
 			strcpy( next_instruction->name , instruction_name );
 			#ifdef DEBUG
@@ -81,7 +82,7 @@ void getInstructions( FILE* src , Instruction** instructions , int* instructions
 }
 static Code getCode( char* buffer ){
 
-	char delim[] = " ,:\t";
+	char delim[] = " ,:\t\n";
 	char* token = strtok( buffer , delim );
 
 	Code code = 0;

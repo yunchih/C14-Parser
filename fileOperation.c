@@ -5,9 +5,9 @@
 #ifdef DEBUG
 	#include "debug.h"
 #endif
-void incrementPosition( FILE* out[] , int increment ){
+void incrementPosition( FILE* out[] ){
 	for (int i = 0; i < CODE_FILE_NUM ; ++i)
-		fseek( out[i] , increment , SEEK_CUR );
+		fseek( out[i] , 1 , SEEK_CUR );
 }
 void resetFilePointer( FILE* out[] ){
 	for (int i = 0; i < FILENUM; ++i)
@@ -29,12 +29,14 @@ void writePosition( FILE* file , Instruction* instruction ){
 	#endif
 	while( instruction != NULL ){
 		List* list = instruction->list;
+		fseek( file , instruction->position , SEEK_SET );
 		while( list != NULL ){
 			#ifdef DEBUG
 				printf("Write into file at %ld\n",ftell(file) );
 				dump_code( list->next_position , 8 );
 			#endif
 			fwrite(&(list->next_position),sizeof(char),1,file);
+			fseek( file , list->next_position , SEEK_SET );
 			list = list->next;
 		}
 		instruction = instruction->next;
