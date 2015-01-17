@@ -7,10 +7,12 @@ void dump_file( char* fileName[] ){
 		log_info("File: %s",fileName[i]);
 		FILE* file = fopen(fileName[i],"rb");
 		fread(&c,sizeof(char),1,file);
+
 		while( !feof(file) ){
 			dump_code( c , 8 );
 			fread(&c,sizeof(char),1,file);
 		}
+		fclose(file);
 	}
 }
 void dump_code( Code code,int BitsNum )

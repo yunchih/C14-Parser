@@ -33,6 +33,9 @@ int main(int argc, char *argv[]){
 	getInstructions( src, &instructions, &instructions_number );
 	writeFile( out, instructions, instructions_number );
 
+	fclose(src);
+	for (int i = 0; i < FILENUM; ++i)
+		fclose(out[i]);
 	#ifdef DEBUG
 		log_info("File dump:");
 		dump_file( out_filename );
