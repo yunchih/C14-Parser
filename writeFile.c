@@ -12,7 +12,7 @@ static void writeSecondaryInstruction( FILE* out[] , Instruction* instruction , 
 
 static void writeNextInstruction( FILE* out[] , List* list , int freeSpacePos );
 
-
+static void writeCheer();
 /*
  * Don't forget that `writeCode` itself will increment file pointer , too 
  *
@@ -24,7 +24,7 @@ void writeFile( FILE* out[] , Instruction* instruction , int instructions_number
 	resetFilePointer( out );
 	writeSecondaryInstruction( out , instruction , ( instructions_number-1 ) * 2 );
 	writePosition( out[3] , instruction );
-
+	writeCheer();
 }
 static void writePrimaryInstruction( FILE* out[] , Instruction* instruction ){
 
@@ -81,4 +81,8 @@ static void writeNextInstruction( FILE* out[] , List* list , int freeSpacePos ){
 		log_info("Next instruction at %ld",list->next_position);
 	#endif
 	writeNextInstruction( out , list->next , freeSpacePos );
+}
+
+static void writeCheer(){
+	puts(" -------------> Andy fight! Andy fight! Ye~ Have a good night! <--------- " );
 }

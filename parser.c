@@ -5,6 +5,9 @@
 #ifdef DEBUG
 	#include "debug.h"
 #endif
+
+static void writeCheer();
+
 void file_init(FILE** src,const char *filename,char* type ){
 	*src = malloc(sizeof(FILE));
 	if((*src = fopen(filename,type)) == NULL)
@@ -40,5 +43,9 @@ int main(int argc, char *argv[]){
 		log_info("File dump:");
 		dump_file( out_filename );
 	#endif
+	writeCheer();
 	return 0;
+}
+static void writeCheer(){
+	puts( "\x1b[32m" " -------------> Andy fight! Andy fight! Ye~ Have a good night! <--------- " );
 }
