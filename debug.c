@@ -8,9 +8,13 @@ void dump_file( char* fileName[] ){
 		FILE* file = fopen(fileName[i],"rb");
 		fread(&c,sizeof(char),1,file);
 
+		int addr = 0;
 		while( !feof(file) ){
+			dump_code( addr >> 3 , 8 );
+			printf(" --->");
 			dump_code( c , 8 );
 			fread(&c,sizeof(char),1,file);
+			addr += 8;
 		}
 		fclose(file);
 	}

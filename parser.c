@@ -20,7 +20,7 @@ int main(int argc, char *argv[]){
 	FILE *src = NULL; 
 	FILE* out[4];
 	char* out_filename[4] = {
-		"controlSignal3.bin","controlSignal2.bin","controlSignal1.bin","memory.bin"
+		"low.bin","middle.bin","high.bin","memory.bin"
 	};
 	
 

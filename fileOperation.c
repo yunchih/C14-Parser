@@ -27,15 +27,23 @@ void writePosition( FILE* file , Instruction* instruction ){
 	#ifdef DEBUG
 		log_info("Write Memory.bin:");
 	#endif
+	int offset;
 	while( instruction != NULL ){
 		List* list = instruction->list;
 		fseek( file , instruction->position , SEEK_SET );
 		while( list != NULL ){
+			int cur_position = ftell(file);
 			#ifdef DEBUG
 				printf("Write into file at %ld\n",ftell(file) );
 				dump_code( list->next_position , 8 );
 			#endif
-			fwrite(&(list->next_position),sizeof(char),1,file);
+
+			if(list->next_position == END_POS)
+				offset = END_POS;	
+			else
+				offset = list->next_position - cur_position;
+			fwrite(&(offset),sizeof(char),1,file);
+			
 			fseek( file , list->next_position , SEEK_SET );
 			list = list->next;
 		}
